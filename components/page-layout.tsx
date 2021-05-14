@@ -11,10 +11,12 @@ export default function PageLayout(props: IPageLayoutProps) {
     <>
       <AppHead />
       <AppHeader />
-      <main className="flex items-center justify-center py-12 flex-col h-screen">
-        {props.children}
-      </main>
-      <AppFooter />
+      <section className="flex flex-col min-h-screen">
+        <main className="flex flex-1 pt-12 flex-col h-screen container mx-auto mb-3">
+          {props.children}
+        </main>
+        <AppFooter />
+      </section>
     </>
   );
 }

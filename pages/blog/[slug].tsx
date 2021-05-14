@@ -2,34 +2,42 @@ import { GetStaticPropsResult } from "next";
 import PageLayout from "../../components/page-layout";
 import { getAllPosts, getPostBySlug } from "../../services";
 import PostType from "../../types/post";
-import markdownToHtml from '../../utils/markdownToHtml';
+import markdownToHtml from "../../utils/markdownToHtml";
 
 interface IBlogDetailProps {
   post: PostType;
-  // morePosts: PostType[]
-  // preview?: boolean
 }
 
 const BlogDetail = (props: IBlogDetailProps) => {
-  const { post: { content, title } } = props;
+  const {
+    post: { content, title, date },
+  } = props;
 
-  return <PageLayout>
-    <section>{title}</section>
-     <section
+  return (
+    <PageLayout>
+      <section className="text-center text-3xl py-5 font-bold">
+        {title} <p className="text-center text-sm font-light text-gray-500 pt-1">发表于 {date}</p>
+      </section>
+
+      <article
+        className="prose max-w-none prose-sm mx-auto prose-indigo"
         dangerouslySetInnerHTML={{ __html: content }}
       />
-  </PageLayout>;
+    </PageLayout>
+  );
 };
 
 export default BlogDetail;
 
 type Params = {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 };
 
-export async function getStaticProps({ params }: Params): Promise<GetStaticPropsResult<IBlogDetailProps>> {
+export async function getStaticProps({
+  params,
+}: Params): Promise<GetStaticPropsResult<IBlogDetailProps>> {
   const post: any = getPostBySlug(params.slug, [
     "title",
     "date",
@@ -40,13 +48,13 @@ export async function getStaticProps({ params }: Params): Promise<GetStaticProps
     "coverImage",
   ]);
 
-  const content = await markdownToHtml(post.content || '');
+  const content = await markdownToHtml(post.content || "");
 
   return {
     props: {
       post: {
         ...post,
-        content
+        content,
       },
     },
   };

@@ -1,37 +1,46 @@
-import { useRouter } from 'next/router';
-import PageLayout from "../components/page-layout";
-import { getAllPosts } from "../services";
-import Post from '../types/post'
+import PageLayout from "../components/page-layout"
+import { getAllPosts } from "../services"
+import Post from "../types/post"
+import PostCart from "../components/post-cart"
+import useRouter from '../hooks/useRouter'
 
 type Props = {
   allPosts: Post[]
 }
 
 export default function Home(props: Props) {
-  const router = useRouter();
-  const { allPosts = [] } = props;
+  const { allPosts = [] } = props
+  const { push } = useRouter()
 
-  const toDetail = (slug: string) => router.push(`/blog/${slug}`);
+  const toBlog = () => push("/blog")
 
-  return <PageLayout>
-    {allPosts.map((post: Post, index: number) => (
-      <section key={index} onClick={() => toDetail(post.slug)} className="cursor-pointer">
-        <section>{post.title}</section>
-        <section>{post.date}</section>
-        <section>{post.excerpt}</section>
+  return (
+    <PageLayout>
+      <section className="mt-5">
+        <section className="text-lg mb-2">最新文章</section>
+        {allPosts.map((post: Post, index: number) => (
+          <PostCart key={index} post={post} />
+        ))}
+        <section
+          className="transition-all inline-block bg-gray-50 rounded-lg p-2 cursor-pointer hover:bg-gray-100"
+          onClick={toBlog}
+        >
+          查看更多......
+        </section>
       </section>
-    ))}
-  </PageLayout>;
+    </PageLayout>
+  )
 }
 
 export const getStaticProps = async () => {
   const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
+    "title",
+    "date",
+    "slug",
+    "author",
+    "coverImage",
+    "excerpt",
+    "tags",
   ])
 
   return {

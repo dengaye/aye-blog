@@ -20,3 +20,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: #323a45;
 } */
+
+body {
+  @apply antialiased;
+}
