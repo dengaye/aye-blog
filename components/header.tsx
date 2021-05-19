@@ -9,7 +9,7 @@ interface INavLink {
 
 const NavLinks = [
   { path: "/", value: "首页" },
-  { path: "/blog", value: "记录" },
+  { path: "/blog", value: "博客" },
   { path: "/tags", value: "标签" },
 ];
 
