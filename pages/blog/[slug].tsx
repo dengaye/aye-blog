@@ -18,12 +18,12 @@ const BlogDetail = (props: IBlogDetailProps) => {
     <PageLayout>
       <section className="bg-white h-full p-6 my-4 rounded-md">
         <section className="text-3xl pb-2 font-bold">
-          {title}{" "}
+          {title}
           <p className="text-sm font-light text-gray-500 pt-1">
             发表于 {date}
           </p>
         </section>
-        <section className="mb-2">
+        <section className="mb-6">
           {tags.map((tag: string, index: number) => (
             <Tag key={index} name={tag} showStyle={true} />
           ))}

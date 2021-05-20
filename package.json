@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "server": "next start --port 7070"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.4.0",

@@ -16,13 +16,13 @@ export default function Home(props: Props) {
 
   return (
     <PageLayout>
-      <section className="mt-5">
-        <section className="text-lg mb-2">最新文章</section>
+      <section className="mt-5 p-6 bg-white rounded-lg h-full">
+        <section className="text-lg mb-2 pl-4">最新文章</section>
         {allPosts.map((post: Post, index: number) => (
           <PostCart key={index} post={post} />
         ))}
         <section
-          className="transition-all inline-block rounded-lg p-2 cursor-pointer hover:bg-gray-200"
+          className="transition-all inline-block rounded-lg ml-2 p-2 cursor-pointer hover:bg-gray-100 hover:shadow-inner"
           onClick={toBlog}
         >
           查看更多......

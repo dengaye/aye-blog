@@ -11,7 +11,7 @@ const Blog = (props: Props) => {
   const { allPosts = [] } = props;
   return (
     <PageLayout>
-      <section className="mt-5">
+      <section className="mt-5 p-6 bg-white rounded-lg h-full">
         {allPosts.map((post: Post, index: number) => (
           <PostCart key={index} post={post} />
         ))}
