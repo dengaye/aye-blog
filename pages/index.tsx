@@ -1,18 +1,18 @@
-import PageLayout from "../components/page-layout"
-import { getAllPosts } from "../services"
-import Post from "../types/post"
-import PostCart from "../components/post-cart"
-import useRouter from '../hooks/useRouter'
+import PageLayout from "../components/page-layout";
+import { getAllPosts } from "../services";
+import Post from "../types/post";
+import PostCart from "../components/post-cart";
+import useRouter from "../hooks/useRouter";
 
 type Props = {
-  allPosts: Post[]
-}
+  allPosts: Post[];
+};
 
 export default function Home(props: Props) {
-  const { allPosts = [] } = props
-  const { push } = useRouter()
+  const { allPosts = [] } = props;
+  const { push } = useRouter();
 
-  const toBlog = () => push("/blog")
+  const toBlog = () => push("/blog");
 
   return (
     <PageLayout>
@@ -22,14 +22,14 @@ export default function Home(props: Props) {
           <PostCart key={index} post={post} />
         ))}
         <section
-          className="transition-all inline-block bg-gray-50 rounded-lg p-2 cursor-pointer hover:bg-gray-100"
+          className="transition-all inline-block rounded-lg p-2 cursor-pointer hover:bg-gray-200"
           onClick={toBlog}
         >
           查看更多......
         </section>
       </section>
     </PageLayout>
-  )
+  );
 }
 
 export const getStaticProps = async () => {
@@ -41,9 +41,9 @@ export const getStaticProps = async () => {
     "coverImage",
     "excerpt",
     "tags",
-  ])
+  ]);
 
   return {
     props: { allPosts },
-  }
-}
+  };
+};

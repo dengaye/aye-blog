@@ -24,7 +24,7 @@ const AppHeader = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-screen border-b bg-white">
+    <header className="fixed top-0 left-0 w-screen border-b bg-white z-10">
       <section
         className={"container mx-auto h-12 flex justify-center items-center"}
       >

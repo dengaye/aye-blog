@@ -23,4 +23,5 @@ body {
 
 body {
   @apply antialiased;
+  background-color: #f2f3f4;
 }

@@ -4,7 +4,7 @@ excerpt: '本地修改代码后，没有使用 git commit 就直接使用 git re
 date: '2021-01-26'
 author:
   name: Aye
-tags: 'git'
+tags: 'Git'
 ---
 
 ## 场景

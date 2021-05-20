@@ -1,11 +1,13 @@
-import { GetStaticPropsResult } from "next";
-import PageLayout from "../../components/page-layout";
-import { getAllPostsByTag, getAllTags } from "../../services";
-import PostType from "../../types/post";
-import PostCart from "../../components/post-cart";
+import { GetStaticPropsResult } from "next"
+import PageLayout from "../../components/page-layout"
+import { getAllPostsByTag, getAllTags } from "../../services"
+import PostType from "../../types/post"
+import PostCart from "../../components/post-cart"
+import Tag from '../../components/tag';
 
 interface ITagDetailProps {
   allPosts: PostType[];
+  tag: string;
 }
 
 const TagDetail = (props: ITagDetailProps) => {
@@ -14,6 +16,7 @@ const TagDetail = (props: ITagDetailProps) => {
   return (
     <PageLayout>
       <section className="mt-3">
+        <Tag name={props.tag} showStyle className="mb-3 py-1"/>
         {allPosts.map((post: PostType, index: number) => (
           <PostCart key={index} post={post} showTags={false} />
         ))}
@@ -46,6 +49,7 @@ export async function getStaticProps({
   return {
     props: {
       allPosts,
+      tag: params.tag,
     },
   };
 }

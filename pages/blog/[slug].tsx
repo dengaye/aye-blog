@@ -3,6 +3,7 @@ import PageLayout from "../../components/page-layout";
 import { getAllPosts, getPostBySlug } from "../../services";
 import PostType from "../../types/post";
 import markdownToHtml from "../../utils/markdownToHtml";
+import Tag from "../../components/tag";
 
 interface IBlogDetailProps {
   post: PostType;
@@ -10,19 +11,28 @@ interface IBlogDetailProps {
 
 const BlogDetail = (props: IBlogDetailProps) => {
   const {
-    post: { content, title, date },
+    post: { content, title, date, tags },
   } = props;
 
   return (
     <PageLayout>
-      <section className="text-center text-3xl py-5 font-bold">
-        {title} <p className="text-center text-sm font-light text-gray-500 pt-1">发表于 {date}</p>
+      <section className="bg-white h-full p-6 my-4 rounded-md">
+        <section className="text-3xl pb-2 font-bold">
+          {title}{" "}
+          <p className="text-sm font-light text-gray-500 pt-1">
+            发表于 {date}
+          </p>
+        </section>
+        <section className="mb-2">
+          {tags.map((tag: string, index: number) => (
+            <Tag key={index} name={tag} showStyle={true} />
+          ))}
+        </section>
+        <article
+          className="prose prose-sm mx-auto prose-indigo w-full max-w-full"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
       </section>
-
-      <article
-        className="prose max-w-none prose-sm mx-auto prose-indigo"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
     </PageLayout>
   );
 };
@@ -46,6 +56,7 @@ export async function getStaticProps({
     "content",
     "ogImage",
     "coverImage",
+    "tags",
   ]);
 
   const content = await markdownToHtml(post.content || "");

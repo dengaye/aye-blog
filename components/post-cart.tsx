@@ -1,5 +1,6 @@
 import Post from "../types/post";
 import useRouter from "../hooks/useRouter";
+import Tag from '../components/tag';
 
 interface IPostCardProps {
   post: Post;
@@ -11,15 +12,10 @@ const PostCard = (props: IPostCardProps) => {
   const { push } = useRouter();
 
   const toDetail = (slug: string) => push(`/blog/${slug}`);
-
-  const toTags = (e: any, tag: string) => {
-    e.stopPropagation();
-    push(`/tags/${tag}`);
-  };
-
+  
   return (
     <section
-      className="cursor-pointer rounded-md mb-4 p-4 bg-gray-50 transition-all hover:bg-gray-100"
+      className="cursor-pointer rounded-md mb-4 p-4 border shadow-inner bg-white transition-all hover:bg-gray-100"
       onClick={() => toDetail(post.slug)}
     >
       <h2 className="text-3xl">{post.title}</h2>
@@ -28,13 +24,7 @@ const PostCard = (props: IPostCardProps) => {
       {showTags && (
         <section>
           {(post?.tags || []).map((tag: string, index: number) => (
-            <span
-              key={index}
-              className="text-gray-400 pr-3 hover:text-gray-500 cursor-pointer"
-              onClick={(e: any) => toTags(e, tag)}
-            >
-              #{tag}
-            </span>
+            <Tag key={index} name={tag} />
           ))}
         </section>
       )}

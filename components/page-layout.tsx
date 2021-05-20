@@ -12,7 +12,7 @@ export default function PageLayout(props: IPageLayoutProps) {
       <AppHead />
       <AppHeader />
       <section className="flex flex-col min-h-screen">
-        <main className="flex flex-1 pt-12 flex-col h-screen container mx-auto mb-3">
+        <main className="flex flex-1 pt-12 flex-col h-screen container mx-auto">
           {props.children}
         </main>
         <AppFooter />

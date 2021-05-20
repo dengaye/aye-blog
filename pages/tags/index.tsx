@@ -1,6 +1,6 @@
 import PageLayout from "../../components/page-layout";
 import { getAllTags } from "../../services";
-import useRouter from "../../hooks/useRouter";
+import Tag from '../../components/tag'
 
 interface ITagsProps {
   allTags: string[];
@@ -8,21 +8,12 @@ interface ITagsProps {
 
 const Tags = (props: ITagsProps) => {
   const { allTags } = props;
-  const { push } = useRouter();
-
-  const toDetailTag = (tag: string) => push(`/tags/${tag}`);
 
   return (
     <PageLayout>
       <section className="flex mt-3">
         {allTags.map((tag: string, index: number) => (
-          <span
-            key={index}
-            className="p-3 cursor-pointer shadow-inner mx-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-all hover:text-opacity-10"
-            onClick={() => toDetailTag(tag)}
-          >
-            #{tag}
-          </span>
+          <Tag key={index} name={tag} showStyle={true} className={'p-2'} />
         ))}
       </section>
     </PageLayout>
